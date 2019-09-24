@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route, Link } from "react-router-dom";
+import { Switch, Route, Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 import "./App.css";
@@ -10,6 +10,7 @@ import LoginAndRegisterPage from "./pages/login-and-register/login-and-register.
 import Header from "./components/header/header.component";
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import { setCurrentUser } from "./redux/user/user.actions";
+import { currentUser } from "./redux/user/user.reducer";
 
 const ErrorPage = props => (
   <div>
@@ -21,7 +22,7 @@ class App extends React.Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    const { setCurrentUser } = this.props; 
+    const { setCurrentUser } = this.props;
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
       if (user) {
         const userRef = await createUserProfileDocument(user);
@@ -48,8 +49,18 @@ class App extends React.Component {
         <Header />
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route path="/shop" component={ShopPage} />
-          <Route path="/login" component={LoginAndRegisterPage} />
+          <Route exact path="/shop" component={ShopPage} />
+          <Route
+            exact
+            path="/login"
+            render={() =>
+              this.props.currentUser ? (
+                <Redirect to="/" />
+              ) : (
+                <LoginAndRegisterPage />
+              )
+            }
+          />
           <Route component={ErrorPage} />
         </Switch>
       </div>
@@ -57,11 +68,15 @@ class App extends React.Component {
   }
 }
 
+const mapStateToProps = ({ user }) => ({
+  currentUser: user.currentUser
+});
+
 const mapDispatchToProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user))
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(App);
