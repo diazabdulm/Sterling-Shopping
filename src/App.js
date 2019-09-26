@@ -10,7 +10,6 @@ import LoginAndRegisterPage from "./pages/login-and-register/login-and-register.
 import Header from "./components/header/header.component";
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import { setCurrentUser } from "./redux/user/user.actions";
-import { currentUser } from "./redux/user/user.reducer";
 
 const ErrorPage = props => (
   <div>
