@@ -3,13 +3,13 @@ import React from "react";
 import Login from "../../components/login/login.component";
 import Register from "../../components/register/register.component";
 
-import "./login-and-register.styles.scss";
+import { LoginAndRegisterContainer } from "./login-and-register.styles";
 
 const LoginAndRegisterPage = () => (
-  <div className="login-and-register">
+  <LoginAndRegisterContainer>
     <Login />
     <Register />
-  </div>
+  </LoginAndRegisterContainer>
 );
 
 export default LoginAndRegisterPage;

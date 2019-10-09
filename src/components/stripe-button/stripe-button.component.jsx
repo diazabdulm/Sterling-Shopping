@@ -1,14 +1,14 @@
 import React from "react";
 import StripeCheckout from "react-stripe-checkout";
 
-const StripeButton = ({ price }) => {
+const StripeButton = ({ price, clearCart }) => {
   const priceForStripe = price * 100;
   const publishableKey = "pk_test_OHxxzYFjfBOSHwcdz7iCeCLJ00WcoV6zyL";
 
   const onToken = token => {
-      console.log(token);
-      alert('Payment successful');
-  }
+    console.log(token);
+    alert("Payment successful");
+  };
 
   return (
     <StripeCheckout
@@ -19,7 +19,7 @@ const StripeButton = ({ price }) => {
       image="https://svgshare.com/i/CUz.svg"
       description={`Total price: $${price}`}
       amount={priceForStripe}
-      panelLabel='Pay Now'
+      panelLabel="Pay Now"
       token={onToken}
       stripeKey={publishableKey}
     />
