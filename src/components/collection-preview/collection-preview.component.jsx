@@ -1,6 +1,6 @@
 import React from "react";
 
-import CollectionItem from "../collection-item/collection-item.component";
+import CollectionItemContainer from "../collection-item/collection-item.container";
 
 import {
   CollectionPreviewContainer,
@@ -13,7 +13,7 @@ const CollectionPreview = ({ title, items }) => (
     <Title>{title}</Title>
     <Preview>
       {items.slice(0, 4).map(item => (
-        <CollectionItem key={item.id} item={item} />
+        <CollectionItemContainer key={item.id} item={item} />
       ))}
     </Preview>
   </CollectionPreviewContainer>

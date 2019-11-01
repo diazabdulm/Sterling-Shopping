@@ -6,11 +6,11 @@ import { createStructuredSelector } from "reselect";
 import "./App.css";
 
 import HomePage from "./pages/homepage/homepage.component";
-import ShopPage from "./pages/shop/shop.component";
-import CheckoutPage from "./pages/checkout/checkout.component";
+import ShopPageContainer from "./pages/shop/shop.container";
+import CheckoutPageContainer from "./pages/checkout/checkout.container";
 import ErrorPage from "./pages/error/error.component";
 import LoginAndRegisterPage from "./pages/login-and-register/login-and-register.component";
-import Header from "./components/header/header.component";
+import HeaderContainer from "./components/header/header.container";
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import { setCurrentUser } from "./redux/user/user.actions";
 import { selectCurrentUser } from "./redux/user/user.selectors";
@@ -44,10 +44,10 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Header />
+        <HeaderContainer />
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route path="/shop" component={ShopPage} />
+          <Route path="/shop" component={ShopPageContainer} />
           <Route
             exact
             path="/login"
@@ -59,7 +59,7 @@ class App extends React.Component {
               )
             }
           />
-          <Route exact path="/checkout" component={CheckoutPage} />
+          <Route exact path="/checkout" component={CheckoutPageContainer} />
           <Route component={ErrorPage} />
         </Switch>
       </div>
