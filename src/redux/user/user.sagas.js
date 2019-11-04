@@ -85,7 +85,7 @@ export function* signInAfterSignUp({ payload: { user, additionalData } }) {
 export function* ongoogleSignInStart() {
   yield takeLatest(UserActionTypes.GOOGLE_SIGN_IN_START, signInWithGoogle);
 }
-
+ 
 export function* onEmailSignInStart() {
   yield takeLatest(UserActionTypes.EMAIL_SIGN_IN_START, signInWithEmail);
 }

@@ -1,70 +1,57 @@
-import React from "react";
+import React, { useState } from "react";
 
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
 
 import { LoginContainer, Title } from "./login.styles";
 
-class Login extends React.Component {
-  constructor(props) {
-    super(props);
+const Login = ({ googleSignInStart, emailSignInStart }) => {
+  const [userCredentials, setCredentials] = useState({ email: "", password: "" });
+  
+  const { email, password } = userCredentials;
 
-    this.state = {
-      email: "",
-      password: ""
-    };
-  }
-
-  handleChange = event => {
+  const handleChange = event => {
     const { value, name } = event.target;
-    this.setState({
-      [name]: value
-    });
+    setCredentials({ ...userCredentials, [name]: value });
   };
 
-  handleSubmit = async event => {
+  const handleSubmit = async event => {
     event.preventDefault();
-    const { emailSignInStart } = this.props;
-    const { email, password } = this.state;
-
     emailSignInStart(email, password);
   };
 
-  render() {
-    const { googleSignInStart } = this.props;
-    return (
-      <LoginContainer>
-        <Title>I have an account</Title>
-        <span>Sign in with your email and password</span>
-        <form onSubmit={this.handleSubmit}>
-          <FormInput
-            type="email"
-            name="email"
-            label="email"
-            value={this.state.email}
-            required
-            onChange={this.handleChange}
-          />
-          <FormInput
-            type="password"
-            name="password"
-            label="password"
-            value={this.state.password}
-            onChange={this.handleChange}
-            required
-          />
-          <CustomButton type="submit">Log In</CustomButton>
-          <CustomButton
-            type="button"
-            onClick={googleSignInStart}
-            isGoogleSignIn
-          >
-            Sign In With Google
+  return (
+    <LoginContainer>
+      <Title>I have an account</Title>
+      <span>Sign in with your email and password</span>
+      <form onSubmit={handleSubmit}>
+        <FormInput
+          type="email"
+          name="email"
+          label="email"
+          value={email}
+          required
+          onChange={handleChange}
+        />
+        <FormInput
+          type="password"
+          name="password"
+          label="password"
+          value={password}
+          onChange={handleChange}
+          required
+        />
+        <CustomButton type="submit">Log In</CustomButton>
+        <CustomButton
+          type="button"
+          onClick={googleSignInStart}
+          isGoogleSignIn
+        >
+          Sign In With Google
           </CustomButton>
-        </form>
-      </LoginContainer>
-    );
-  }
+      </form>
+    </LoginContainer>
+  );
 }
 
 export default Login;
