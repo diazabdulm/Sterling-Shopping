@@ -1,14 +1,14 @@
 import React from "react";
 
-import Login from "../../components/login/login.component";
-import Register from "../../components/register/register.component";
+import LoginContainer from "../../components/login/login.container";
+import RegisterContainer from "../../components/register/register.container";
 
 import { LoginAndRegisterContainer } from "./login-and-register.styles";
 
 const LoginAndRegisterPage = () => (
   <LoginAndRegisterContainer>
-    <Login />
-    <Register />
+    <LoginContainer />
+    <RegisterContainer />
   </LoginAndRegisterContainer>
 );
 
