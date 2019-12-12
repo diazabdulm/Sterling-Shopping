@@ -13,12 +13,10 @@ const StripeButton = ({ price }) => {
         token
       })
       .then(response => {
-        console.log('success')
         alert("Payment successful");
       })
       .catch(error => {
-        console.log(error);
-        // console.log(`Payment error: ${JSON.parse(error)}`);
+        console.log(`Payment error: ${JSON.parse(error)}`);
         alert(
           "There was an issue with your payment. Please try again with the test credit card"
         );
