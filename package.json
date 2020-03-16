@@ -20,7 +20,7 @@
     "dotenv": "7.0.0",
     "express": "^4.16.4",
     "express-sslify": "^1.2.0",
-    "stripe": "6.28.0"
+    "stripe": "8.32.0"
   },
   "devDependencies": {}
 }
